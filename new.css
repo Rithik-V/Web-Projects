@@ -1,0 +1,51 @@
+.background {
+  height: 100vh;
+  padding-top: 1px;
+}
+.container
+{
+  margin :0 auto;
+  display:grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%;
+  max-width: 300px;
+}
+.title1{
+  text-align: center;
+  color:burlywood;
+  font-size: 2em;
+}
+.tile
+{
+  border: 3px solid orange;
+  min-width: 30px;
+  min-height: 30px;
+  display :flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  cursor:pointer;
+}
+.title
+{
+  text-align: center;
+  margin-top: 10px;
+  font-size:40px;
+  color:pink;
+}
+.playerX
+{
+  color:aqua;
+}
+.playerO
+{
+  color:brown;
+}
+.controls
+{
+  display:flex;
+  flex-direction: row;
+  margin-top:1em;
+  justify-content: center;
+  align-items: center;
+}
