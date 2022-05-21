@@ -5,8 +5,17 @@ addtodo.addEventListener('click',function()
 {
     var paragraph = document.createElement('p')
     paragraph.innerText=inputf.value
+    var int = document.createElement('input')
+    int.type='checkbox'
+    int.id='123'
+    var lab = document.createElement('label')
+    lab.for = '123'
+    lab.innerText=paragraph.innerText
+    cont.appendChild(int)
+    cont.appendChild(lab)
+    paragraph.innerText=""
     cont.appendChild(paragraph)
-    inputf.innerText=""
+    inputf.value=""
     paragraph.addEventListener('click',function()
     {
         paragraph.style.textDecoration="line-through"
