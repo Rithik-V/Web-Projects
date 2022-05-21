@@ -1,54 +1,27 @@
-cells = document.querySelectorAll(".tile")
-cells=Array.from(cells)
-console.log(cells)
-currentplayer = "X";
-re= document.querySelector("#reset");
-console.log(re);
-winningcombinations=
-[
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6]
-] 
-function checkforwinner()
+addtodo=document.querySelector('.todo')
+inputf=document.querySelector('.inputfield')
+cont=document.querySelector('.todos')
+addtodo.addEventListener('click',function()
 {
-    winningcombinations.forEach(function(combinations)
+    var paragraph = document.createElement('p')
+    paragraph.innerText=inputf.value
+    var int = document.createElement('input')
+    int.type='checkbox'
+    int.id='123'
+    var lab = document.createElement('label')
+    lab.for = '123'
+    lab.innerText=paragraph.innerText
+    cont.appendChild(int)
+    cont.appendChild(lab)
+    paragraph.innerText=""
+    cont.appendChild(paragraph)
+    inputf.value=""
+    paragraph.addEventListener('click',function()
     {
-       let ok = combinations.every(idx=>cells[idx].innerText==currentplayer)
-       if(ok)
-       {
-        win = document.querySelector(".title");
-        win.innerText="Player "+currentplayer+" Won";
-       }
+        paragraph.style.textDecoration="line-through"
     })
-}
-cells.forEach(function(tile) {
-        tile.addEventListener('click',function()
-        {
-            if(tile.innerText=="")
-            {
-                tile.innerText=currentplayer;
-               checkforwinner(currentplayer);
-               if(currentplayer=="X")
-               {
-                   currentplayer="O";
-               }
-               else
-               {
-                   currentplayer="X"
-               }
-            }
-        })
-});
-re.addEventListener('click',function()
-{
-    cells.forEach(function(tile)
+    paragraph.addEventListener('dblclick',function()
     {
-        tile.innerText=""
+        cont.removeChild(paragraph);
     })
 })
