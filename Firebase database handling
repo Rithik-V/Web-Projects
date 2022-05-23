@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do</title>
+  <style>
+    label{
+      display: inline;
+      width:80px;
+    }
+    input,select{width:120px;}
+  </style>
+</head>
+
+<body>
+
+  <label>Name</label> <input type="text" id ="Namebox"><br><br>
+  <label>RollNo</label> <input type="text" id ="Rollbox"><br><br>
+  <label>Section</label> <input type="text" id ="Secbox"><br><br>
+  <label>Gender</label>
+  <select id="Genbox">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+
+  <hr>
+  <button id ='Insbtn'>INSERT</button>
+  <button id ='Selbtn'>SELECT</button>
+  <button id ='Upnbtn'>UPDATE</button>
+  <button id ='Delbtn'>DELETE</button>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDIz1EZnr1jZlO7H0qKWAb8XHIJzbhA2oc",
+      authDomain: "sample-project-5372c.firebaseapp.com",
+      projectId: "sample-project-5372c",
+      storageBucket: "sample-project-5372c.appspot.com",
+      messagingSenderId: "457561860533",
+      appId: "1:457561860533:web:46df28a013187d0f9211fc",
+      measurementId: "G-30LCXH5DYP"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    import {getDatabase,ref,get,set,child,update,remove}
+    from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js"
+    const db = getDatabase();
+
+    var namebox = document.getElementById("Namebox");
+    var rollbox = document.getElementById("Rollbox");
+    var secbox = document.getElementById("Secbox");
+    var genbox = document.getElementById("Genbox");
+
+    var insbtn = document.getElementById("Insbtn");
+    var selbtn = document.getElementById("Selbtn");
+    var upnbtn = document.getElementById("Upnbtn");
+    var delbtn = document.getElementById("Delbtn");
+     function InsertData()
+     {
+       set(ref(db,"TheStudents/"+ rollbox.value),{
+         NameOfStd : namebox.value,
+         RollNo : rollbox.value,
+         Section : secbox.value,
+         Gender : genbox.value
+       })
+       .then(()=>{
+         alert("data stored successfully")
+       })
+       .catch((error)=>{
+         alert("unsucessful ,error"+error);
+       })
+     }
+     function SelectData()
+     {
+       const dbref = ref(db);
+       get(child(dbref,"TheStudents/"+ rollbox.value)).then((snapshot)=>{
+         if(snapshot.exists())
+         {
+           namebox.value = snapshot.val().NameOfStd;
+           secbox.value= snapshot.val().Section;
+           genbox.value=snapshot.val().Gender;
+         }
+         else
+         {
+           alert("No data found")
+         }
+       })
+       .catch((error)=>
+       {
+          alert("unsuccessful ,error"+error)
+       });
+     }
+     insbtn.addEventListener('click',InsertData);
+     selbtn.addEventListener('click',SelectData);
+  </script>
+</body>
+</html>
