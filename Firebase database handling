@@ -100,8 +100,34 @@
           alert("unsuccessful ,error"+error)
        });
      }
+     function UpdateData()
+     {
+      update(ref(db,"TheStudents/"+ rollbox.value),{
+         NameOfStd : namebox.value,
+         Section : secbox.value,
+         Gender : genbox.value
+       })
+       .then(()=>{
+         alert("data updated successfully")
+       })
+       .catch((error)=>{
+         alert("unsucessful ,error"+error);
+       })
+    }
+    function DeleteData()
+    {
+      remove(ref(db,"TheStudents/"+ rollbox.value))
+       .then(()=>{
+         alert("data removed successfully")
+       })
+       .catch((error)=>{
+         alert("unsucessful ,error"+error);
+       }) 
+    }
      insbtn.addEventListener('click',InsertData);
      selbtn.addEventListener('click',SelectData);
+     upnbtn.addEventListener('click',UpdateData);
+     delbtn.addEventListener('click',DeleteData);
   </script>
 </body>
 </html>
