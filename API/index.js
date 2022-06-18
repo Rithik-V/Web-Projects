@@ -16,6 +16,18 @@ searchBtn.addEventListener('click',()=>
         console.log(data[0].continents[0]);
         console.log(data[0].currencies[Object.keys(data[0].currencies)].name)
         console.log(Object.values(data[0].languages).toString().split(",").join(", "));
+        console.log(data[0].startOfWeek);
+        let str = data[0].startOfWeek;
+        const str2 = str.charAt(0).toUpperCase() + str.slice(1);
+        let temp = ""
+        let n=data[0].timezones.length;
+        for(var i=0;i<n;i++)
+        {
+            temp=temp+data[0].timezones[i];
+            if(i!=n-1)
+            temp+=",";
+        }
+        console.log(temp);
         result.innerHTML=`<img src="${data[0].flags.svg}"
     class="flag-img">
     <h2>${data[0].name.common}</h2>
@@ -29,6 +41,12 @@ searchBtn.addEventListener('click',()=>
         <div class="data-wrapper">
         <h4>Continent:</h4>
         <span>${data[0].continents[0]}</span>
+        </div>
+        </div>
+        <div class="wrapper">
+        <div class="data-wrapper">
+        <h4>Subregion :</h4>
+        <span>${data[0].subregion}</span>
         </div>
         </div>
         <div class="wrapper">
@@ -49,12 +67,24 @@ searchBtn.addEventListener('click',()=>
         <span>${Object.values(data[0].languages).toString().split(",").join(", ")}</span>
         </div>
         </div>
+        <div class="wrapper">
+        <div class="data-wrapper">
+        <h4>Start of the Week:</h4>
+        <span>${str2}</span>
+        </div>
+        </div>
+        <div class="wrapper">
+        <div class="data-wrapper">
+        <h4>Timezone(s):</h4>
+        <span>${temp}</span>
+        </div>
+        </div>
         `;
     })
     .catch(()=>{
         if(countryName.length==0)
         {
-            result.innerHTML=`<h3>The input field cannot be empty</h3>`
+            result.innerHTML='<h3>The input field cannot be empty</h3>';
         }
         else
         {
