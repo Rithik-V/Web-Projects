@@ -1,0 +1,44 @@
+body{
+    background-color:pink;
+  }
+  .jumbotrons
+  {
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    padding: 10vh 10vw  10vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 0.62em;
+  }
+  .jumbotrons input{
+    border-radius: 0.62em;
+    width: 30vw;
+    height: 4vh;
+  }
+  h4{
+    display: inline;
+    font-weight: bold;
+  }
+  .data-wrapper{
+    text-align: left;
+    margin-bottom: 1em;
+    letter-spacing: 0.3px;
+  }
+  .flag-img
+  {
+    display: block;
+    width: 45%;
+    margin: 1.8em auto 1.2em auto;
+  }
+  h3{
+    color: red;
+    font-size: 1.2em;
+  }
+  span{
+    font-size: 1.1em;
+  }
+  
